@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tasmeem Reza's blog</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet"> 
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    MMLorHTML: { prefer: "HTML" },
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });</script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type='text/javascript'>
+  newContainer = document.createElement('span');
+  newContainer.style.setProperty("display","none","");
+  newNode = document.createElement('script');
+  newNode.type = "math/tex";
+  newContainer.appendChild(newNode);
+  document.body.insertBefore(newContainer,document.body.firstChild);
+</script>
+
+</head>
+
+<body>
+
+<div id="main">
+<header><a href="https://tasmeemreza.github.io/">←back to home</a> </header>
+<h1 class = "title">Ear Decomposition</h1>
+<p class = "date"> 17 April 2019</p>
+<br> 
+
+<p>Let's see what an <strong>ear</strong> means in graph theory, which I am gonna shamelessly quote from wikipedia: </p>
+<blockquote cite = "https://en.wikipedia.org/wiki/Ear_decomposition">In graph theory, an ear of an undirected graph G is a path P where the two endpoints of the path may coincide, but where otherwise no repetition of edges or vertices is allowed, so every internal vertex of P has degree two in P.</blockquote>
+
+<p>So it's basically either a simple path or a simple cycle. So a ear decomposition essensially means partitioning the edges of an undirected graph into a bunch of ears. In this article, I'll mainly focus on open ear decomposition, which is probably the most important variant. Now look closely at this graph: </p>
+<center>
+<figure>
+    <img src="Ear_decomposition.png">
+	<figcaption>Figure 1.1: Ear Decomposition</figcaption></p>
+</figure>
+</center> 
+
+<p>What do you see? It sure does ressemble a lot to ears and thus the name <strong>Ear Decomposition</strong>. 
+ There are three ears in the graph, namely $G_{1}, G_{2}, G_{3}$. The first ear $G_{1}$ is a simple cycle. $G_{2}$ connects 2 vertices from $G_{1}$. $G_{3}$ connects one vertex from $G_{1}$ and one from \(G_{2}\). So let's define what an open ear decomposition looks like: 
+<ul style="font-size:19px">
+	<li>First ear is a simple cycle.</li>
+	<li>Each of the following ear is a simple path and connects 2 vertices of previous ears. </li>
+</ul>
+<br> 
+
+</p>
+
+<p>You might be wondering, why on earth would representing a graph like an ear matter. Well, here's why:</p>
+
+<div class="theorem">	
+<p><strong>Theorem 1.1: </strong> Every 2-vertex connected graph has an open ear decomposition. </p>
+</div>
+
+<p>In case you are wondering what a <strong>2-vertex connected graph </strong> is, it's basically a graph with no articulation vertices (or cut vertices, whatever you call it). Let's see how to find a ear decomposition of a 2-vertex connected graph, which would also give us a constructive proof of theorem 1.1. I am going to state the algorithm directly from wikipedia (because, why not). Besides it's one of the rare examples of wikipedia actually describing an algorithm rather clearly.   
+</p> 
+<div class="theorem">
+	<p><strong>Algorithm:</strong> </p>
+	<ul>
+	<li>Find a spanning tree of the given graph and choose a root for the tree.</li>
+    <li>Determine, for each edge uv that is not part of the tree, the distance between the root and the lowest common ancestor of u and v.</li>
+    <li> For each edge uv that is part of the tree, find the corresponding "master edge", a non-tree edge wx such that the cycle formed by adding wx to the tree passes through uv and such that, among such edges, w and x have a lowest common ancestor that is as close to the root as possible (with ties broken by edge identifiers).</li>
+    <li>Form an ear for each non-tree edge, consisting of it and the tree edges for which it is the master, and order the ears by the distance of its non-tree edge's lca from the root (with the same tie-breaking rule).</li>
+	</ul>	
+
+<p><strong>Proof that this does indeed find an ear decomposition:</strong>
+
+<p> It isn't very hard to proof so I urge you to first give it a try yourself. 
+The first ear's non tree edge's (let's call that \((u, v)\)) lowest common ancenstor must be the root itself, since this is a 2 vertex connected graph. So all the edges within path from \(u\) to \(v\) will form an ear with edge \((u, v)\). This is the the cycle of our ear decomposition. </p>
+
+<p>Let's denote the non-tree edge of the next ear by \((p, q)\) and the root by \(R\). Also, let \(A = \text{lca}(p, q)\). Now there're 2 cases: 
+
+<center>
+<figure>
+    <img src="lca.jpg">
+	<figcaption>Figure 1.2</figcaption></p>
+</figure>
+</center> 
+
+	<ul>
+		<li>
+			<strong>Case 1:</strong> \(A \neq R\). So there must atleast one edge in path p-q whose master edge is not \((p, q)\), because otherwise removing \(A\) would disconnect both \(p\) and \(q\) from \(R\). Let \((x, \text{parent}(x))\) be the first edge on the path from \(p\) to \(\text{lca}(p, q)\), then none of the edges from \(x\) to \(A\) has \((p, q)\) as it's master edge. Similarly, let \((y, \text{parent}(y))\) be the first edge on the path from \(q\) to \(A\), then none of the edges from \(y\) to \(A\) has \((p, q)\) as it's master edge. See figure 1.2, the blue edges' master edge is not \((p, q)\), whereas the black edges' master edge is \((p, q)\) itself. This shows edges for which \((p, q)\) is the master edge forms a simple path which connects 2 nodes of some previous ears.   
+		</li>
+		<li>
+			<strong>Case 2:</strong> \(A = R\) 
+			
+		</li>
+	</ul>
+</p>
+
+</p>
+</p>
+</div>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+</div>
+
+</body>
+</html>
