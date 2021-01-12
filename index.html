@@ -1,36 +1,18 @@
-<!DOCTYPE html>
-<!-- saved from url=(0037)https://thebestmotherfucking.website/ -->
-<html lang="en" class="contrast"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="theme-color" content="#ffffff"><title>Algorithms Anthology</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" type="text/css" href="files/main.css"><link rel="stylesheet" type="text/css" href="files/css"><link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
-</head>
+---
+layout: default
+---
 
-<body>
-  <h1>Algorithms Anthology</h1>
-  <p>We are nothing but the product of billions of years of molecules coming together and ratcheting up through natural selection, we are composed only of highways of fluids and chemicals sliding along roadways within billions of dancing cells, trillions of synaptic conversations hum in parallel, this vast egglike fabric of micron-thin circuitry runs algorithms undreamt of in modern science, and these neural programs give rise to our decision making, loves, desires, fears, and aspirations. That understanding would be a numinous experience, better than anything ever proposed in anyone's holy text.
- </p>
- <p style="text-align: right">-David Eagleman</p>
+<div class="posts">
+  {% for post in site.posts %}
+    <article class="post">
 
-  <h2>About Me</h2>
-  <p><ul>
-      <li><a href="https://stats.ioinformatics.org/people/5851">International Olympiad in Informatics Profile</a></li>
-      <li><a href="https://codeforces.com/profile/Bruteforceman">Codeforces Profile</a></li>
-      <li><a href="https://www.facebook.com/tasmeem.reza">Facebook Profile</a></li>
-      <li>Email: <a href="to:tasmeemreza@gmail.com">tasmeemreza@gmail.com</a></li>
-  </ul></p>
-<!-- End Matomo Code -->
-<h2>Target</h2>
-I shall use this site as personal journal from now on, writing about anything I find cool or found cool in the past (as the title suggests, it will be in some way related to algorithms or data structures). I have another objective which is to write about <i>POI</i> (Polish Olympiad in Informatics) problems. Their solutions are usually not available in the internet (not in English at least) but they offer some of the coolest algorithmic tasks. 
+      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
 
-<h2>Notes</h2>
-<ul><li><a href="notes/SegTree.pdf">Optimizing 2D Dynamic Programming with Segment Tree</a></li>
-    <li><a href="notes/Knapsack.pdf">Knapsack</a></li></ul>
+      <div class="entry">
+        {{ post.excerpt }}
+      </div>
 
-<h2>Articles</h2>
-<ul><li><a href="notes/SegTree.pdf">Optimizing 2D Dynamic Programming with Segment Tree</a></li>
-    <li><a href="notes/Knapsack.pdf">Knapsack</a></li></ul>
-
-<h2>POI</h2>
-<ul><li><a href="lam/lam.html">Solar Lamps (lam)</a></li>
-    </ul>
-
-</body></html>
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    </article>
+  {% endfor %}
+</div>
