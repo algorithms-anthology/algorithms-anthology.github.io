@@ -1,0 +1,7 @@
+I"¾<p>I found this at CSPrep from Tao_Genna. At first glance, this looks like a typical constructive algorithm problem.: we have to provide the construction of a set from some information given about it. Here is the abridged problem statement.</p>
+
+<p>You have a non-decreasing array $a_1, a_2, a_3, \dots, a_n$. You have created a <em>multiset</em> of length $2^n$, which contains the sums of the elements in each possible subsequence of the array. You have lost the array (of course), but you know the multiset. Find all possible arrays which could have produced this multiset. Note that the elements of the multiset are listed in no particular order.</p>
+
+<p>The constraints are $2^n \leq 10^{5}$</p>
+
+:ET

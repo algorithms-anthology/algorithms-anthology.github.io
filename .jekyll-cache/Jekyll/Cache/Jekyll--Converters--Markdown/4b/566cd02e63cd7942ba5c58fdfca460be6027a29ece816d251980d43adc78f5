@@ -1,0 +1,29 @@
+I"�<p>I found this at CSPrep from Tao Genna. At first glance, this looks like a typical constructive algorithm problem.: we have to provide the construction of a set from some information given about it. Here is the abridged problem statement.</p>
+
+<p>You have a non-decreasing array $a_1, a_2, a_3, \dots, a_n$. You have created a <em>multiset</em> of length $2^n$, which contains the sums of the elements in each possible subsequence of the array. You have lost the array (of course), but you know the multiset. Find all possible arrays which could have produced this multiset. Note that the elements of the multiset are listed in no particular order.</p>
+
+<p>The constraints are $n \leq 18$, which means size of the multiset can be as long as $2^{18} \approx 2 \times 10^5$. If you want to try out your ideas, here’s the problem <a href="https://www.urionlinejudge.com.br/judge/es/problems/view/2913">link</a></p>
+
+<p>This problem is a nice combination of greedy, divide and conquer and recursive algorithms. As usual, let’s solve a easier problem first.</p>
+
+<p>Consider this problem: Suppose you know a particular value $m$ is in the array. You want to partition the multiset in two equal halves such that one half consists of all sums which contain $m$, and other half consists of all sums which do <strong>NOT</strong> contain $m$. Let’s call those two paritions $I$ and $J$ respectively, and let’s call our multiset $S$. In other words, $S = I \cup J$. We can approach this greedily:</p>
+
+<ul>
+  <li>If $m$ is positive, then notice that minimum value in the multiset does not include $m$. This implies, $\text{(minimum value + m)}$ must be in the multiset as well. We can insert the minimum value at $J$ and $\text{(minimum value + m)}$  at $I$, and remove both of them from $S$.</li>
+  <li>If $m$ is negative, then notice that minimum value in the multiset must include $m$. This implies, $\text{(minimum value - m)}$ must be in the multiset as well. We can insert the minimum value at $I$ and $\text{(minimum value - m)}$  at $J$, and remove both of them from $S$.</li>
+  <li>Continue the previous steps until $S$ becomes empty.</li>
+</ul>
+
+<p>If $S$ is sorted beforehand, this is solvable in linear (pseudo-linear is okay too) time.</p>
+
+<p>Okay, so we’ve solved the easier problem. But the problem is how do we find a value which must be in the array. Here’s comes extremal principle. For those who don’t know what it is, extremal principle is working with extreme values in a problem (in our case, maximum or minimum values). Notice that, we’ve already applied this principle in our previous greedy algorithm as well. Working with minimum sums made things a lot easier. So our crucial observation is this:</p>
+
+<blockquote>
+  <p>At least one of $\text{(second minimum value - minimum value)}$ or $\text{(minimum value - second minimum value)}$ will always be in the array.</p>
+</blockquote>
+
+<p>Why is this? Well, easy. Notice how the minimum value and the second minimum value of $S$ are formed. Minimum value must be the sum of all negative numbers from the array (if there is none, this is simply $0$). The second minimum will be either (minimum value + lowest positive number) or (minimum value - highest negative number). So, substracting the minimum value from the second minimum value or vice versa will give us either the lowest positive number or the highest negative number.</p>
+
+<p>But which one to pick? Here we can employ divide and conquer. We can try both. We will run the above algorithm on both options. From this, we will get two different partitions of half the size of our current multiset. Now we can solve our problem recursively on those two partitions. The complexity will be T(N) = 2 * T(N / 2) + O(N), which is O(N log N) where N = 2^n</p>
+
+:ET
