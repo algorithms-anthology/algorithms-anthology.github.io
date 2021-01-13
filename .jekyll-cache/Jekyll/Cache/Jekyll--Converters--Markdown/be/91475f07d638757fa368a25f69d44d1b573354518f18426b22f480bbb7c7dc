@@ -1,79 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Solar Lamps: A Polish Problem on Linear Transformation – Algorithms Anthology – A journal on competitive programming</title>
-
-        <meta charset="utf-8" />
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
-
-    
-    <meta name="description" content="I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.
-" />
-    <meta property="og:description" content="I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.
-" />
-    
-    <meta name="author" content="Algorithms Anthology" />
-
-    
-    <meta property="og:title" content="Solar Lamps: A Polish Problem on Linear Transformation" />
-    <meta property="twitter:title" content="Solar Lamps: A Polish Problem on Linear Transformation" />
-    
-  <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\[","\]"], ["\\[","\\]"] ],
-      processEscapes: true
-    },
-    messageStyle: "none",
-    "HTML-CSS": { availableFonts: ["TeX"] }
-  });
-</script>
-
-<script type="text/javascript"
-   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js">
-</script>
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" type="text/css" href="/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="Algorithms Anthology - A journal on competitive programming" href="/feed.xml" />
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> 
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
-  </head>
-
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="/" class="site-avatar"><img src="https://raw.githubusercontent.com/algorithms-anthology/algorithms-anthology.github.io/master/images/jekyll-logo.png" /></a>
-
-          <div class="site-info">
-            <h1 class="site-name"><a href="/">Algorithms Anthology</a></h1>
-            <p class="site-description">A journal on competitive programming</p>
-          </div>
-
-          <nav>
-            <a href="/">Blog</a>
-            <a href="/about">About</a>
-          </nav>
-        </header>
-      </div>
-    </div>
-
-    <div id="main" role="main" class="container">
-      <article class="post">
-  <h1>Solar Lamps: A Polish Problem on Linear Transformation</h1>
-
-  <div class="entry">
-    <p>I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.</p>
+I"�&<p>I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.</p>
 
 <p>If you want to try out your idea, here’s the problem <a href="https://szkopul.edu.pl/problemset/problem/2yK6zUTXvAjhxSDfbjE4Zx7k/site/?key=statement">link</a>. If statement is too big for you, here’s an abridged problem statement:</p>
 
@@ -135,44 +60,9 @@ But we can improve upon the previous solution. There are two ways. One is to use
 100 point solution requires a somewhat different approach using <a href="https://codeforces.com/blog/entry/45578">Parallel Binary Search</a>. If you do not know it, I urge you to learn it first from that excellent codeforces blog. If you are already familiar with the concept, this becomes a simple exercise. We have to binary search on the values of $t_i$ simultaneously. I’ll only describe the key idea component of the algorithm here:</p>
 
 <p>Suppose we have a function <code class="language-plaintext highlighter-rouge">solve(l, r, S)</code> that takes a range $[l, r]$ and a set of points $S$ whose $t_i$ values lies within that range. Set $m = \frac{l + r}{2}$. We want to find out which of the points in set $S$ have $t_i$ values in range $[l, m]$.
-Assume points of $S$ are sorted according to their $x$ coordinate with ties broken by $y$ coordinate. We process points in this sorted order one by one. Also, let’s create a BBST $^1$ which will store the $y$ coordinates of the points whose value of $t$ lies in range $[l, m]$ (found before processing the current point). Suppose we are now processing the $i$ th point. If i lies in range $[l, m]$ then we are sure that $t_i$ also lies in range $[l, m]$ Otherwise, find out the number of values in the BBST that are less than the $y$ coordinate of the currently processed point. Suppose this number is $h$. If $h \geq k_i$ then we can be sure $t_i$ again lies in range $[l, m]$. If none the previous cases hold, $t_i$ cannot be in range $[l, m]$. If the $i$ th point is lies within range $[l, m]$, then we insert its $y$ coordinate in the BBST and move onto the next point.
+Assume points of $S$ are sorted according to their $x$ coordinate with ties broken by $y$ coordinate. We process points in this sorted order one by one. Also, let’s create a BBST $^1$ which will store the $y$ coordinates of the points whose value of $t$ lies in range $[l, m]$ (found before processing the current point). Suppose we are now processing the $i$ th point. If i lies in range $[l, m]$ then we are sure that $t_i$ also lies in range $[l, m]$ Otherwise, find out the number of values in the BBST that are less than the $y$ coordinate of the currently processed point. Suppose this number is $h$. If $h \geq k_i$ then we can be sure $t_i$ again lies in range $[l, m]$. If none the previous cases hold, $t_i$ cannot be in range $[l, m]$. If the $i$ th point is lies within range $[l, m]$, then we insert its $y$ coordinate in the BBST and move onto the next point. <br />
 By performing the above algorithm for all points in $S$, we can identify which of the points lie in range $[l, m]$ (let the set of such points be $T$). This takes us $O(|S| \log n)$ time. Now we can call <code class="language-plaintext highlighter-rouge">solve(l, m, T)</code>and <code class="language-plaintext highlighter-rouge">solve(m + 1, r, S \ T)</code> to recursively solve the remaining problem.
 So, the complexity of the parallel binary search is $O(n \log^{2} n)$ time with low constant factor.</p>
 
 <p>$^{1}$ It’s possible to use a binary indexed tree instead of BBST if $y$ coordinates of the points are compressed</p>
-
-  </div>
-
-  <div class="date">
-    Written on November 21, 2019
-  </div>
-
-  
-</article>
-
-    </div>
-
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          
-<a href="mailto:tasmeemreza@gmail.com"><i class="svg-icon email"></i></a>
-<a href="https://www.facebook.com/tasmeem.reza"><i class="svg-icon facebook"></i></a>
-
-<a href="https://github.com/Bruteforceman"><i class="svg-icon github"></i></a>
-
-
-
-
-
-
-
-
-        </footer>
-      </div>
-    </div>
-
-    
-
-  </body>
-</html>
+:ET

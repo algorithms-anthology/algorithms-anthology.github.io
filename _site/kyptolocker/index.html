@@ -43,7 +43,9 @@
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="/style.css" />
     <link rel="alternate" type="application/rss+xml" title="Algorithms Anthology - A journal on competitive programming" href="/feed.xml" />
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
   </head>
 
@@ -91,7 +93,7 @@
 
 <p>Okay, so we’ve solved the easier problem. But the problem is how do we find a value which must be in the array. Here’s comes extremal principle. For those who don’t know what it is, extremal principle is working with extreme values in a problem (in our case, maximum or minimum values). Notice that, we’ve already applied this principle in our previous greedy algorithm as well. Working with minimum sums made things a lot easier. So our crucial observation is this:</p>
 
-<p>At least one of second <strong>(minimum value - minimum value)</strong> or <strong>(minimum value - second minimum value)</strong> will always be in the array.</p>
+<p>At least one of second <strong>(second minimum value - minimum value)</strong> or <strong>(minimum value - second minimum value)</strong> will always be in the array.</p>
 
 <p>Why is this? Well, easy. Notice how the minimum value and the second minimum value of $S$ are formed. Minimum value must be the sum of all negative numbers from the array (if there is none, this is simply $0$). The second minimum will be either (minimum value + lowest positive number) or (minimum value - highest negative number). So, substracting the minimum value from the second minimum value or vice versa will give us either the lowest positive number or the highest negative number.</p>
 

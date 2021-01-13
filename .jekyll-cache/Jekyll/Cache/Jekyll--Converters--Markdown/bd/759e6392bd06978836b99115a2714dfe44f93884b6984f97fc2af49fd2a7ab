@@ -1,9 +1,0 @@
-I",<p>I found this at CSPrep from Tao Genna. At first glance, this looks like a typical constructive algorithm problem.: we have to provide the construction of a set from some information given about it. Here is the abridged problem statement.</p>
-
-<p>You have a non-decreasing array $a_1, a_2, a_3, \dots, a_n$. You have created a <em>multiset</em> of length $2^n$, which contains the sums of the elements in each possible subsequence of the array. You have lost the array (of course), but you know the multiset. Find all possible arrays which could have produced this multiset. Note that the elements of the multiset are listed in no particular order.</p>
-
-<p>The constraints are $n \leq 18$, which means size of the multiset can be as long as $2^{18} ~ 2 \times 10^5$ If you want to try out your ideas, here’s the problem <a href="https://www.urionlinejudge.com.br/judge/es/problems/view/2913">link</a></p>
-
-<p>This problem is a nice combination of greedy algoroithm, divide and conquer and recursive algorithms. As usual, let’s solve a easier problem first.</p>
-
-:ET
