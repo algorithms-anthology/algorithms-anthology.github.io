@@ -1,77 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Solar Lamps: A Polish Problem on Linear Transformation – Algorithms Anthology – A journal on competitive programming</title>
-
-        <meta charset="utf-8" />
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
-
-    
-    <meta name="description" content="I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.
-" />
-    <meta property="og:description" content="I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.
-" />
-    
-    <meta name="author" content="Algorithms Anthology" />
-
-    
-    <meta property="og:title" content="Solar Lamps: A Polish Problem on Linear Transformation" />
-    <meta property="twitter:title" content="Solar Lamps: A Polish Problem on Linear Transformation" />
-    
-  <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\[","\]"], ["\\[","\\]"] ],
-      processEscapes: true
-    },
-    messageStyle: "none",
-    "HTML-CSS": { availableFonts: ["TeX"] }
-  });
-</script>
-
-<script type="text/javascript"
-   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js">
-</script>
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" type="text/css" href="/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="Algorithms Anthology - A journal on competitive programming" href="/feed.xml" />
-
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
-  </head>
-
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="/" class="site-avatar"><img src="https://raw.githubusercontent.com/algorithms-anthology/algorithms-anthology.github.io/master/images/jekyll-logo.png" /></a>
-
-          <div class="site-info">
-            <h1 class="site-name"><a href="/">Algorithms Anthology</a></h1>
-            <p class="site-description">A journal on competitive programming</p>
-          </div>
-
-          <nav>
-            <a href="/">Blog</a>
-            <a href="/about">About</a>
-          </nav>
-        </header>
-      </div>
-    </div>
-
-    <div id="main" role="main" class="container">
-      <article class="post">
-  <h1>Solar Lamps: A Polish Problem on Linear Transformation</h1>
-
-  <div class="entry">
-    <p>I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.</p>
+I"6&<p>I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.</p>
 
 <p>If you want to try out your idea, here’s the problem <a href="https://szkopul.edu.pl/problemset/problem/2yK6zUTXvAjhxSDfbjE4Zx7k/site/?key=statement">link</a>. If statement is too big for you, here’s an abridged problem statement:</p>
 
@@ -104,13 +31,13 @@ In order to progress from here, we have to learn to <strong>NOT</strong> play by
 
 <p>We know every point on cartesian system can be expressed using a linear combination of $\hat{i}$ and $\hat{j}$ where</p>
 
-\[\hat{i} = \begin{bmatrix} 1\\ 0 \end{bmatrix} \, \, \hat{j} = \begin{bmatrix} 0\\ 1 \end{bmatrix}\]
+<p>\(\hat{i} = \begin{bmatrix} 1\\ 0 \end{bmatrix}, \hat{j} = \begin{bmatrix} 0\\ 1 \end{bmatrix}\).</p>
 
-<p>In other words, $\hat{i}$ and $\hat{j}$ are unit vectors parallel to $x$ and $y$ axis respectively.</p>
+<p>In other words, $\hat{i}$ and $\hat{j}$ are unit vectors parallel to $x$ and $y$ axis respectively. <br /></p>
 
 <p>But we want the axes to be parallel to the rays that are shooted from each point. For this modified coordinate system, we choose</p>
 
-\[\hat{i} = \begin{bmatrix} X_1\\  Y_1 \end{bmatrix} \, \, \hat{j} = \begin{bmatrix} X_2\\  Y_2 \end{bmatrix}\]
+\[\hat{i} = \begin{bmatrix} X_1\\  Y_1 \end{bmatrix}, \hat{j} = \begin{bmatrix} X_2\\  Y_2 \end{bmatrix}\]
 
 <p>Suppose we want to find the modfied coordinate of point $(x, y)$. Let’s assume the modified coordinate is $(a, b)$. So,</p>
 
@@ -137,39 +64,4 @@ Assume points of $S$ are sorted according to their $x$ coordinate with ties brok
 By performing the above algorithm for all points in $S$, we can identify which of the points lie in range $[l, m]$ (let the set of such points be $T$). This takes us $O(|S| \log n)$ time. Now we can call <code> solve(l, m, T) </code> and <code>solve(m + 1, r, S \ T)</code> to recursively solve the remaining problem.
 So, the complexity of the parallel binary search is $O(n \log^{2} n)$ time with low constant factor.
 <small> <sup>*</sup>It’s possible to use a binary indexed tree instead of BBST if $y$ coordinates of the points are compressed </small></p>
-
-  </div>
-
-  <div class="date">
-    Written on November 21, 2019
-  </div>
-
-  
-</article>
-
-    </div>
-
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          
-<a href="mailto:tasmeemreza@gmail.com"><i class="svg-icon email"></i></a>
-<a href="https://www.facebook.com/tasmeem.reza"><i class="svg-icon facebook"></i></a>
-
-<a href="https://github.com/Bruteforceman"><i class="svg-icon github"></i></a>
-
-
-
-
-
-
-
-
-        </footer>
-      </div>
-    </div>
-
-    
-
-  </body>
-</html>
+:ET

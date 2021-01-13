@@ -1,4 +1,4 @@
-I">&<p>I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.</p>
+I"/&<p>I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.</p>
 
 <p>If you want to try out your idea, here’s the problem <a href="https://szkopul.edu.pl/problemset/problem/2yK6zUTXvAjhxSDfbjE4Zx7k/site/?key=statement">link</a>. If statement is too big for you, here’s an abridged problem statement:</p>
 
@@ -29,14 +29,23 @@ In order to progress from here, we have to learn to <strong>NOT</strong> play by
 
 <p>So if the axes of our coordinate system forms the same angle as the points in our problem, we can still apply the previous condition: A point $(x_i, y_i)$ gets illuminated by another point $(x_j, y_j)$ if and only if $x_j \leq x_i$ and $y_j \leq y_i$. Here, $(x_i, y_i)$ and $(x_j, y_j)$ are not coordinates of the the cartesian plane (the one where axes are perpendicular), but rather they are the coordinates of our modified coordinate system. Once we find these modified coordinates for each point, it boils down to the easy variant that we discussed earlier. Here’s how to find the modified coordinate of each point: (Some calculations are involved)</p>
 
-<p>We know every point on cartesian system can be expressed using a linear combination of $\hat{i}$ and $\hat{j}$ where $\hat{i} = \begin{bmatrix} 1\ 0 \end{bmatrix}$ and $\hat{j} = \begin{bmatrix} 0\ 1 \end{bmatrix}$. In other words, $\hat{i}$ and $\hat{j}$ are unit vectors parallel to $x$ and $y$ axis respectively. <br /></p>
+<p>We know every point on cartesian system can be expressed using a linear combination of $\hat{i}$ and $\hat{j}$ where</p>
 
-<p>But we want the axes to be parallel to the rays that are shooted from each point. For this modified coordinate system, we choose $\hat{i} = \begin{bmatrix} X_1\  Y_1 \end{bmatrix}$ and $\hat{j} = \begin{bmatrix} X_2\  Y_2 \end{bmatrix}$ <br /></p>
+<p>\(\hat{i} = \begin{bmatrix} 1\\ 0 \end{bmatrix}, \hat{j} = \begin{bmatrix} 0\\ 1 \end{bmatrix}\).</p>
 
-<p>Suppose we want to find the modfied coordinate of point $(x, y)$. Let’s assume the modified coordinate is $(a, b)$. So,
-[a\hat{i} + b\hat{j} = \begin{bmatrix} x\  y \end{bmatrix}]
-[a\begin{bmatrix} X_1\ Y_1 \end{bmatrix} + b \begin{bmatrix} X_2\ Y_2 \end{bmatrix} = \begin{bmatrix} x\ y \end{bmatrix}]
-[\begin{bmatrix} aX_1 + bX_2\ aY_1 + bY_2 \end{bmatrix} = \begin{bmatrix} x\ y \end{bmatrix}]</p>
+<p>In other words, $\hat{i}$ and $\hat{j}$ are unit vectors parallel to $x$ and $y$ axis respectively.</p>
+
+<p>But we want the axes to be parallel to the rays that are shooted from each point. For this modified coordinate system, we choose</p>
+
+\[\hat{i} = \begin{bmatrix} X_1\\  Y_1 \end{bmatrix}, \hat{j} = \begin{bmatrix} X_2\\  Y_2 \end{bmatrix}\]
+
+<p>Suppose we want to find the modfied coordinate of point $(x, y)$. Let’s assume the modified coordinate is $(a, b)$. So,</p>
+
+\[a\hat{i} + b\hat{j} = \begin{bmatrix} x\\  y \end{bmatrix}\]
+
+\[a\begin{bmatrix} X_1\\ Y_1 \end{bmatrix} + b \begin{bmatrix} X_2\\ Y_2 \end{bmatrix} = \begin{bmatrix} x\\ y \end{bmatrix}\]
+
+\[\begin{bmatrix} aX_1 + bX_2\\ aY_1 + bY_2 \end{bmatrix} = \begin{bmatrix} x\\ y \end{bmatrix}\]
 
 <p>Solving for $a$ and $b$ yields [(a, b) = \left ( \frac{xY_1 - yX_1}{X_{2}Y_{1} - Y_{2}X_{1}}, \frac{yX_2 - xY_2}{X_{2}Y_{1} - Y_{2}X_{1}} \right )]</p>
 
@@ -52,9 +61,7 @@ But we can improve upon the previous solution. There are two ways. One is to use
 
 <p>Suppose we have a function <code> solve(l, r, S) </code> that takes a range $[l, r]$ and a set of points $S$ whose $t_i$ values lies within that range. Set $m = \frac{l + r}{2}$. We want to find out which of the points in set $S$ have $t_i$ values in range $[l, m]$.
 Assume points of $S$ are sorted according to their $x$ coordinate with ties broken by $y$ coordinate. We process points in this sorted order one by one. Also, let’s create a BBST<sup>*</sup> which will store the $y$ coordinates of the points whose value of $t$ lies in range $[l, m]$ (found before processing the current point). Suppose we are now processing the $i$ th point. If i lies in range $[l, m]$ then we are sure that $t_i$ also lies in range $[l, m]$ Otherwise, find out the number of values in the BBST that are less than the $y$ coordinate of the currently processed point. Suppose this number is $h$. If $h \geq k_i$ then we can be sure $t_i$ again lies in range $[l, m]$. If none the previous cases hold, $t_i$ cannot be in range $[l, m]$. If the $i$ th point is lies within range $[l, m]$, then we insert its $y$ coordinate in the BBST and move onto the next point. <br />
-By performing the above algorithm for all points in $S$, we can identify which of the points lie in range $[l, m]$ (let the set of such points be $T$). This takes us $O(|S| \log n)$ time. Now we can call <code> solve(l, m, T) </code> and <code>solve(m + 1, r, S \ T)</code> to recursively solve the remaining problem.</p>
-
-<p>So, the complexity of the parallel binary search is $O(n \log^{2} n)$ time with low constant factor.</p>
-
-<p><small> <sup>*</sup>It’s possible to use a binary indexed tree instead of BBST if $y$ coordinates of the points are compressed <small></small></small></p>
+By performing the above algorithm for all points in $S$, we can identify which of the points lie in range $[l, m]$ (let the set of such points be $T$). This takes us $O(|S| \log n)$ time. Now we can call <code> solve(l, m, T) </code> and <code>solve(m + 1, r, S \ T)</code> to recursively solve the remaining problem.
+So, the complexity of the parallel binary search is $O(n \log^{2} n)$ time with low constant factor.
+<small> <sup>*</sup>It’s possible to use a binary indexed tree instead of BBST if $y$ coordinates of the points are compressed </small></p>
 :ET
