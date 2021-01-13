@@ -1,0 +1,5 @@
+I":<p>Abridged Problem Statement:
+<span>Abridged Problem Statement:</span>
+<span> You are given given \(n\) points where the \(i\) th point is \((x_i, y_i)\). You can also given four integers \(X_1, Y_1, X_2, Y_2\). For each point \((x_i, y_i)\) consider the angle formed by rays \((x_i, y_i)\) to \((x_i + X_1, y_i + Y_2)\) and \((x_i, y_i)\) to \((x_i + X_2, y_i + Y_2)\). \(i\) th point is manually turned-on on \(i\) th minute, and if a point is turned on, it illuminates the area between its angle. Additionally, if the \(i\) th point is illuminated by at least \(k_i\) other points, it automatically turns on and starts illuminating light. Determine for each point the first time they will start producing light. (\(1 \leq n \leq 2 \times 10^5\), all coordinates are between \(-10^9\) and \(10^9\) inclusive). 
+</span></p>
+:ET
