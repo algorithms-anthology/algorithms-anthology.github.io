@@ -1,77 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Solar Lamps: A Polish Problem on Linear Transformation – Algorithms Anthology – A journal on competitive programming</title>
-
-        <meta charset="utf-8" />
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
-
-    
-    <meta name="description" content="I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.
-" />
-    <meta property="og:description" content="I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.
-" />
-    
-    <meta name="author" content="Algorithms Anthology" />
-
-    
-    <meta property="og:title" content="Solar Lamps: A Polish Problem on Linear Transformation" />
-    <meta property="twitter:title" content="Solar Lamps: A Polish Problem on Linear Transformation" />
-    
-  <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\[","\]"], ["\\[","\\]"] ],
-      processEscapes: true
-    },
-    messageStyle: "none",
-    "HTML-CSS": { availableFonts: ["TeX"] }
-  });
-</script>
-
-<script type="text/javascript"
-   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js">
-</script>
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" type="text/css" href="/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="Algorithms Anthology - A journal on competitive programming" href="/feed.xml" />
-
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
-  </head>
-
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="/" class="site-avatar"><img src="https://raw.githubusercontent.com/algorithms-anthology/algorithms-anthology.github.io/master/images/jekyll-logo.png" /></a>
-
-          <div class="site-info">
-            <h1 class="site-name"><a href="/">Algorithms Anthology</a></h1>
-            <p class="site-description">A journal on competitive programming</p>
-          </div>
-
-          <nav>
-            <a href="/">Blog</a>
-            <a href="/about">About</a>
-          </nav>
-        </header>
-      </div>
-    </div>
-
-    <div id="main" role="main" class="container">
-      <article class="post">
-  <h1>Solar Lamps: A Polish Problem on Linear Transformation</h1>
-
-  <div class="entry">
-    <p>I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.</p>
+I"�%<p>I solved this problem on POI a while back, and I felt the ideas used in this problem are quite versatile. I was so intrigued by this problem that I decided to write a short summary of my intuitions and motivations in the solving process. A little bit of knowledge on linear transformations and matrices will be necassary.</p>
 
 <p>If you want to try out your idea, here’s the problem <a href="https://szkopul.edu.pl/problemset/problem/2yK6zUTXvAjhxSDfbjE4Zx7k/site/?key=statement">link</a>. If statement is too big for you, here’s an abridged problem statement:</p>
 
@@ -115,7 +42,7 @@ In order to progress from here, we have to learn to <strong>NOT</strong> play by
 
 <p>This the coordinate we’ll use from for point $(x, y)$.</p>
 
-<p>One problem still persists. Coordinates of our modified system will be floating point numbers, which you and I both hate. Notice that, as a denominator, the term $X_{2}Y_{1} - Y_{2}X_{1}$ is present, which remains constant throughout the problem. So we can multiply each coordinate by in our modified coordinate system by $\mid X_{2}Y_{1} - Y_{2}X_{1} \mid$ (by this, we are essentially scaling the coordinates, so this doesn’t change our answers). This will make everything integer numbers. One more thing, we have to take care of the case where $X_{2}Y_{1} - Y_{2}X_{1} = 0$ (this happens when the angle is zero). This case is relatively straight-forward and is, therefore, ommited here. Armed with these, we can focus on the earlier problem. Solving that will solve the entire thing.</p>
+<p>One problem still persists. coordinates of our modified system will be floating point numbers, which you and I both hate. Notice that, as a denominator, the term $X_{2}Y_{1} - Y_{2}X_{1}$ occurs, which remains constant throughout the problem. So we can multiply each coordinate by in our modified coordinate system (by this, we are essentially scaling the coordinates, so this doesn’t change our answers). This will make everything integer numbers. One more thing, we have to take care of the case where $X_{2}Y_{1} - Y_{2}X_{1} = 0$ (this happens when the angle is zero). This case is relatively straight-forward and is, therefore, ommited here. Armed with these, we can focus on the earlier problem. Solving that will solve the entire thing.</p>
 
 <p>Our problem has reduced to a purely data structure problem. Suppose the point $i$ will start producing light in $t_i$ th time. We can calculate the values of $t_i$ with a blend of dynamic programming and greedy approach. Let assume points $p_1, p_2, p_3, \dots, p_m$ illuminates the $i$ th point. Points $p_1, p_2, p_3, \dots, p_m$ start producing light in times $t_{p_1}, t_{p_2}, t_{p_3}, \dots, t_{p_m}$. Assume that the points are sorted according to the time they start producing light. In other words, $t_{p_1} \leq t_{p_2} \leq t_{p_3} \leq \dots \leq t_{p_m}$. Then value of $t_i$ will be: [t_i = \min{(i, t_{k_i})}]</p>
 
@@ -129,40 +56,5 @@ By performing the above algorithm for all points in $S$, we can identify which o
 
 <p>So, the complexity of the parallel binary search is $O(n \log^{2} n)$ time with low constant factor.</p>
 
-<p><small> <sup>*</sup>It’s possible to use a binary indexed tree instead of BBST if $y$ coordinates of the points are compressed <small></small></small></p>
-
-  </div>
-
-  <div class="date">
-    Written on November 21, 2019
-  </div>
-
-  
-</article>
-
-    </div>
-
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          
-<a href="mailto:tasmeemreza@gmail.com"><i class="svg-icon email"></i></a>
-<a href="https://www.facebook.com/tasmeem.reza"><i class="svg-icon facebook"></i></a>
-
-<a href="https://github.com/Bruteforceman"><i class="svg-icon github"></i></a>
-
-
-
-
-
-
-
-
-        </footer>
-      </div>
-    </div>
-
-    
-
-  </body>
-</html>
+<p><sup>*</sup>It’s possible to use a binary indexed tree instead of BBST if $y$ coordinates of the points are compressed</p>
+:ET
