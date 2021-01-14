@@ -1,0 +1,4 @@
+I"�<p>Many problems require us to deal to dense graphs. I’ll discuss a general technique on how to solve such problems in sub-quadratic time. While this isn’t anything mind-boggling, I find this technique to be extremely useful and surprisingly less-known among competitive programmers.</p>
+
+<p>For whose who don’t know what dense graphs are, they are essentially graphs with $O(n^2)$ edges. The opposite of dense graphs are called sparse graphs, which usually contain $\approx O(n)$ edges.</p>
+:ET
