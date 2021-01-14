@@ -1,79 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Working With Dense Graphs – Algorithms Anthology – A journal on competitive programming</title>
-
-        <meta charset="utf-8" />
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
-
-    
-    <meta name="description" content="Many problems require us to deal to dense graphs. I’ll discuss a general technique on how to solve such problems in sub-quadratic time. While this isn’t anything mind-boggling, I find this technique to be extremely useful and surprisingly less-known among competitive programmers.
-" />
-    <meta property="og:description" content="Many problems require us to deal to dense graphs. I’ll discuss a general technique on how to solve such problems in sub-quadratic time. While this isn’t anything mind-boggling, I find this technique to be extremely useful and surprisingly less-known among competitive programmers.
-" />
-    
-    <meta name="author" content="Algorithms Anthology" />
-
-    
-    <meta property="og:title" content="Working With Dense Graphs" />
-    <meta property="twitter:title" content="Working With Dense Graphs" />
-    
-  <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\[","\]"], ["\\[","\\]"] ],
-      processEscapes: true
-    },
-    messageStyle: "none",
-    "HTML-CSS": { availableFonts: ["TeX"] }
-  });
-</script>
-
-<script type="text/javascript"
-   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js">
-</script>
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" type="text/css" href="/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="Algorithms Anthology - A journal on competitive programming" href="/feed.xml" />
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> 
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
-  </head>
-
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="/" class="site-avatar"><img src="https://raw.githubusercontent.com/algorithms-anthology/algorithms-anthology.github.io/master/images/jekyll-logo.png" /></a>
-
-          <div class="site-info">
-            <h1 class="site-name"><a href="/">Algorithms Anthology</a></h1>
-            <p class="site-description">A journal on competitive programming</p>
-          </div>
-
-          <nav>
-            <a href="/">Blog</a>
-            <a href="/about">About</a>
-          </nav>
-        </header>
-      </div>
-    </div>
-
-    <div id="main" role="main" class="container">
-      <article class="post">
-  <h1>Working With Dense Graphs</h1>
-
-  <div class="entry">
-    <p>Many problems require us to deal to dense graphs. I’ll discuss a general technique on how to solve such problems in sub-quadratic time. While this isn’t anything mind-boggling, I find this technique to be extremely useful and surprisingly less-known among competitive programmers.</p>
+I"6<p>Many problems require us to deal to dense graphs. I’ll discuss a general technique on how to solve such problems in sub-quadratic time. While this isn’t anything mind-boggling, I find this technique to be extremely useful and surprisingly less-known among competitive programmers.</p>
 
 <p>For whose who don’t know what dense graphs are, they are essentially graphs with $O(n^2)$ edges. The opposite of dense graphs are called sparse graphs, which usually contain $\approx O(n)$ edges. Now, you might be wondering how is it possible to deal with dense graphs in sub-quadratic time while there are already quadratic number of edges. The catch is this technique is only applicable in problems where the edges are not explicitely given, rather we can decide about the edges based on some given condition. Take this for example:</p>
 
@@ -102,12 +27,13 @@
 	<span class="n">Delete</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
 	<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
 		<span class="n">v</span> <span class="o">=</span> <span class="n">Find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-		<span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="k">break</span>
-		<span class="k">else</span><span class="p">:</span> <span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span></code></pre></figure>
+		<span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> 
+			<span class="k">break</span>
+		<span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span></code></pre></figure>
 
 <p>Well, that was easy. It is essentially a different way of implementing DFS. It does everything a traditional DFS can do. The <strong>Delete()</strong> operation is analogous to the visited array we keep in the traditional implementation. And instead of using adjacency list directly, we are using the <strong>Find()</strong> function to get an adjacent node.</p>
 
-<p>Did you notice one thing? After we’ve found node <code class="language-plaintext highlighter-rouge">v</code> in <strong>Find(u)</strong>, we have called <code class="language-plaintext highlighter-rouge">dfs(v)</code> immediately after that. So <code class="language-plaintext highlighter-rouge">v</code> gets deleted right away after it was discovered. In fact, all calls to our <strong>Find()</strong> function will return different nodes over the course of whole algorithm. In other words, each node will be discovered exactly once and deleted exactly once. If the complexity of Find and Delete operation is $T$, the DFS will run in $O(nT)$ time!!</p>
+<p>Did you notice one thing? After we’ve found node $v$ in <strong>Find(u)</strong>, we have called <code class="language-plaintext highlighter-rouge">dfs(v)</code> immediately after that. So $v$ gets deleted right away after it was discovered. In fact, all calls to our <strong>Find()</strong> function will return different nodes over the course of whole algorithm. In other words, each node will be discovered exactly once. If the complexity of Find and Delete operation is $T$, the DFS will run in $O(nT)$ time!!</p>
 
 <p>Now, all we have to do is create the black box DS. For example, in the above problem, we define our DS like this:</p>
 <ul>
@@ -145,39 +71,4 @@
   <li><a href="https://oj.uz/problem/view/JOI17_port_facility">Port Facility</a></li>
   <li><a href="https://szkopul.edu.pl/problemset/problem/_PLjXEFyR0XMBQ-kZ1k_GgHE/site/?key=statement">Desert</a></li>
 </ol>
-
-  </div>
-
-  <div class="date">
-    Written on January 14, 2021
-  </div>
-
-  
-</article>
-
-    </div>
-
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          
-<a href="mailto:tasmeemreza@gmail.com"><i class="svg-icon email"></i></a>
-<a href="https://www.facebook.com/tasmeem.reza"><i class="svg-icon facebook"></i></a>
-
-<a href="https://github.com/Bruteforceman"><i class="svg-icon github"></i></a>
-
-
-
-
-
-
-
-
-        </footer>
-      </div>
-    </div>
-
-    
-
-  </body>
-</html>
+:ET
